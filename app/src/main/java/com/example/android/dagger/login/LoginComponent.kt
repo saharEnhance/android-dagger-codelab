@@ -1,5 +1,6 @@
 package com.example.android.dagger.login
 
+import com.example.android.dagger.di.ActivityScope
 import dagger.Subcomponent
 
 // Scope annotation that the LoginComponent uses
