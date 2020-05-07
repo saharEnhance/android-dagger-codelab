@@ -27,14 +27,12 @@ import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.example.android.dagger.MyApplication
 import com.example.android.dagger.R
 import com.example.android.dagger.registration.RegistrationActivity
 import com.example.android.dagger.registration.RegistrationViewModel
 import javax.inject.Inject
 
 class EnterDetailsFragment : Fragment() {
-
 
     /**
      * RegistrationViewModel is used to set the username and password information (attached to
@@ -44,6 +42,8 @@ class EnterDetailsFragment : Fragment() {
      *
      * They could get combined but for the sake of the codelab, we're separating them so we have
      * different ViewModels with different lifecycles.
+     *
+     * @Inject annotated fields will be provided by Dagger
      */
     @Inject
     lateinit var registrationViewModel: RegistrationViewModel
@@ -58,9 +58,9 @@ class EnterDetailsFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        (requireActivity() as MyApplication).appComponent.inject(this)
+        // Grabs the registrationComponent from the Activity and injects this Fragment
+        (activity as RegistrationActivity).registrationComponent.inject(this)
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
