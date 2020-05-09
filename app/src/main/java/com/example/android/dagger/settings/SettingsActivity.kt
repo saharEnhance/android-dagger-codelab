@@ -26,10 +26,13 @@ import com.example.android.dagger.login.LoginActivity
 import javax.inject.Inject
 
 class SettingsActivity : AppCompatActivity() {
-@Inject
-    private lateinit var settingsViewModel: SettingsViewModel
+
+    // @Inject annotated fields will be provided by Dagger
+    @Inject
+    lateinit var settingsViewModel: SettingsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         // Gets the userManager from the application graph to obtain the UserComponent
         // and gets this Activity injected
         val userManager = (application as MyApplication).appComponent.userManager()
@@ -37,6 +40,8 @@ class SettingsActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        setupViews()
     }
 
     private fun setupViews() {
